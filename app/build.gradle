@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.example.myapplicationchat"
+        minSdk 28
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        //noinspection DataBindingWithoutKapt
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //fragment & activity implementation
+    def ktx_version = "1.4.0"
+    implementation "androidx.activity:activity-ktx:$ktx_version"
+    implementation "androidx.fragment:fragment-ktx:$ktx_version"
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    //liveData implementation
+    def liveCycle_version = "2.4.0"
+    def versions_coroutines = "1.5.2"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveCycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$liveCycle_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions_coroutines"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.1'
+
+    //navigation component implementation
+    def nav_version = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    //dagger hilt
+    def daggerHilt_version = "2.40.4"
+    implementation "com.google.dagger:hilt-android:$daggerHilt_version"
+    kapt "com.google.dagger:hilt-compiler:$daggerHilt_version"
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.0.2')
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // Firebase UI Library
+    def firebase_version = "8.0.0"
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_version"
+    implementation "com.firebaseui:firebase-ui-database:$firebase_version"
+}
